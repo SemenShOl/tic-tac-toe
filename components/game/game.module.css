@@ -29,61 +29,69 @@
 } */
 
 @keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+    from {
+        transform: rotate(
+            0deg
+        );
+    }
+    to {
+        transform: rotate(
+            360deg
+        );
+    }
 }
 
 .wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 40px 0;
-	border: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    border: 0px;
 }
 .field {
-	/* margin: 0 auto; */
-	/* width: 400px; */
-	border: 0px;
-	display: grid;
-	grid-template-columns: repeat(
-		3,
-		80px
-	);
-	grid-template-rows: repeat(
-		3,
-		80px
-	);
-	gap: 10px;
+    /* margin: 0 auto; */
+    /* width: 400px; */
+    border: 0px;
+    display: grid;
+    grid-template-columns: repeat(
+        3,
+        80px
+    );
+    grid-template-rows: repeat(
+        3,
+        80px
+    );
+    gap: 10px;
 }
 
 .sm-x {
-	color: red;
-	font-size: 20px;
+    color: red;
+    font-size: 20px;
 }
 .sm-o {
-	color: rgb(46, 76, 1);
-	font-size: 20px;
+    color: rgb(
+        46,
+        76,
+        1
+    );
+    font-size: 20px;
 }
 
 .sq-win {
-	background-color: aqua;
+    background-color: aqua;
 }
 
 .clear {
-	margin: 20px 0 0 0;
-	width: 100px;
-	height: 40px;
-	border-radius: 50px;
-	color: white;
-	background-color: rgb(
-		26,
-		114,
-		21
-	);
-	cursor: pointer;
+    margin: 20px 0 0 0;
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    color: white;
+    background-color: rgb(
+        26,
+        114,
+        21
+    );
+    cursor: pointer;
 }

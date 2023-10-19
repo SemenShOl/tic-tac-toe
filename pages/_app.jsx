@@ -1,10 +1,14 @@
-import '../styles/global.css'
+import "../styles/global.css";
+import {Inter} from "next/font/google";
 
-export default function App({
-	Component,
-	pageProps,
-}) {
+const inter = Inter({
+	subsets: ["latin", "cyrillic"],
+	display: "swap",
+});
+export default function App({Component, pageProps}) {
 	return (
-		<Component {...pageProps} />
-	)
+		<div className={inter.className}>
+			<Component {...pageProps} />
+		</div>
+	);
 }
