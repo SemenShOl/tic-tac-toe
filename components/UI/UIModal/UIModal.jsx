@@ -1,8 +1,6 @@
 import React from 'react'
 import cl from './UIModal.module.scss'
-import { GameInfo } from './../../game/GameInfo/GameInfo'
 import cn from 'classnames'
-import { createPortal } from 'react-dom'
 /**
  *
  * @param {{
@@ -12,7 +10,7 @@ import { createPortal } from 'react-dom'
  * }} param0
  * @returns
  */
-export default function UIModal({ children, width = 'md', isOpen = false, onClose }) {
+export function UIModal({ children, width = 'md', isOpen = false, onClose }) {
    if (!isOpen) return null
 
    const handleClick = e => {

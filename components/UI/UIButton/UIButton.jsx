@@ -9,7 +9,7 @@ import cn from 'classnames'
  * lg?:boolean
  * }}  props
  */
-export default function UIButton({ className, lg, outlined, children }) {
+export function UIButton({ className, lg, outlined, children }) {
    const isOutlined = outlined ? 'outlined' : ''
    const isLg = lg ? 'lg' : ''
    return (

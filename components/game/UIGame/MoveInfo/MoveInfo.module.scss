@@ -1,0 +1,39 @@
+@import '../../../../styles/colors.module.scss';
+
+
+.current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 38px;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+        color: $slate900
+    }
+
+    .currentSm {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+
+.next {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+
+    span {
+        color: $slate400;
+        font-size: 12px;
+        font-weight: 400;
+    }
+}

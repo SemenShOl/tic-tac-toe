@@ -3,7 +3,7 @@ import logoSrc from './logo.svg'
 import Image from 'next/image'
 import { Profile } from '../profile'
 import { ICArrowDown } from '../icons'
-import UIButton from '../UI/UIButton/UIButton'
+import { UIButton } from './../UI/UIButton/UIButton'
 
 export default function Header() {
    return (
