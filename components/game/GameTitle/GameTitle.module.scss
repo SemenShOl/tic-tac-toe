@@ -1,0 +1,31 @@
+@import "../../../styles/colors.module.scss";
+
+.wrapper {
+    padding: 8px;
+    width: 154*4px + 48px;
+
+    .link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: $teal600;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .icons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: $slate400;
+
+        .icon {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    }
+}

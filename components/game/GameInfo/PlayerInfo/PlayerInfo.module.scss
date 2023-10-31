@@ -1,0 +1,53 @@
+@import "../../../../styles/colors.module.scss";
+
+.gamerInfo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .profileWithSymbol {
+        position: relative;
+
+        .symbol {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            left: -4px;
+            top: -4px;
+        }
+    }
+
+    .separator {
+        height: 24px;
+        width: 1px;
+        background: $slate200;
+    }
+
+    .timer {
+        width: 60px;
+        color: $slate900;
+        font-size: 18px;
+        font-weight: 600;
+        // color: $slate400
+    }
+
+    .stopped {
+        color: $slate400;
+
+    }
+
+    .danger {
+        color: rgb(171, 24, 24);
+    }
+
+    .timeIsOver {
+        color: $slate400;
+        text-decoration: line-through;
+
+    }
+}

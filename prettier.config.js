@@ -1,1 +1,1 @@
-module.exports = require("pettier");
+module.exports = require('pettier')

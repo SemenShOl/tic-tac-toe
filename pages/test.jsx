@@ -1,3 +1,5 @@
 export default function TestPage() {
-	return <div className="text-2xl	text-amber-600 	"></div>;
+ return (
+  <div className="text-2xl	text-amber-600 	"></div>
+ )
 }
