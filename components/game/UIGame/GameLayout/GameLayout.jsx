@@ -1,14 +1,7 @@
-import React from 'react'
-import cl from './GameLayout.module.scss'
-import { UIButton } from './../../../UI/UIButton/UIButton'
-export default function GameLayout({
-   backLink,
-   gameTitle,
-   gameInfo,
-   playersList,
-   moveInfo,
-   gameCells,
-}) {
+import React from "react";
+import cl from "./GameLayout.module.scss";
+import {UIButton} from "./../../../UI/UIButton/UIButton";
+export function GameLayout({backLink, gameTitle, gameInfo, playersList, moveInfo, gameCells}) {
    return (
       <div>
          <div className={cl.header}>
@@ -30,5 +23,5 @@ export default function GameLayout({
             <div className={cl.gridWrapper}>{gameCells}</div>
          </div>
       </div>
-   )
+   );
 }

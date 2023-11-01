@@ -1,8 +1,8 @@
-import React from 'react'
-import { ICArrowLeft } from '../../../icons'
-import cl from './BackLink.module.scss'
-import Link from 'next/link'
-export default function BackLink() {
+import React from "react";
+import {ICArrowLeft} from "../../../icons";
+import cl from "./BackLink.module.scss";
+import Link from "next/link";
+export function BackLink() {
    return (
       <div>
          <Link href="#" className={cl.link}>
@@ -10,5 +10,5 @@ export default function BackLink() {
             На главную
          </Link>
       </div>
-   )
+   );
 }

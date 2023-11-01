@@ -1,7 +1,7 @@
-import React from 'react'
-import { ICStar, ICPersonCount, ICTimer } from '../../../icons'
-import cl from './GameInfo.module.scss'
-export default function GameInfo({ playersCount, timeMode }) {
+import React from "react";
+import {ICStar, ICPersonCount, ICTimer} from "../../../icons";
+import cl from "./GameInfo.module.scss";
+export function GameInfo({playersCount, timeMode}) {
    return (
       <div className={cl.icons}>
          <ICStar />
@@ -14,5 +14,5 @@ export default function GameInfo({ playersCount, timeMode }) {
             {timeMode} мин на ход
          </div>
       </div>
-   )
+   );
 }

@@ -1,7 +1,7 @@
-import React from 'react'
-import { GameSymbol } from './../GameSymbol'
-import cl from './MoveInfo.module.scss'
-export default function MoveInfo({ currentSymbol, nextSymbol }) {
+import React from "react";
+import {GameSymbol} from "./../GameSymbol";
+import cl from "./MoveInfo.module.scss";
+export function MoveInfo({currentSymbol, nextSymbol}) {
    return (
       <>
          <div className={cl.current}>
@@ -13,5 +13,5 @@ export default function MoveInfo({ currentSymbol, nextSymbol }) {
             <GameSymbol>{nextSymbol}</GameSymbol>
          </div>
       </>
-   )
+   );
 }

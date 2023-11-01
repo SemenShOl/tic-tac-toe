@@ -1,13 +1,14 @@
-import React from 'react'
-import { UIButton, UIModal } from '../../../UI'
-import cl from './GameModal.module.scss'
-export default function GameModal({ winnerLogin, playersList }) {
+import React from "react";
+import {UIButton, UIModal} from "../../../UI";
+import cl from "./GameModal.module.scss";
+export function GameModal({winnerLogin, playersList}) {
    return (
       <UIModal
          isOpen={winnerLogin}
          onClose={() => {
-            isOpen = false
-         }}>
+            isOpen = false;
+         }}
+      >
          <UIModal.Header>Игра завершена</UIModal.Header>
          <UIModal.Main>
             <div className={cl.winnerInfo}>
@@ -20,5 +21,5 @@ export default function GameModal({ winnerLogin, playersList }) {
             <UIButton>Играть снова</UIButton>
          </UIModal.Footer>
       </UIModal>
-   )
+   );
 }
