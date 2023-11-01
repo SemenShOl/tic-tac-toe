@@ -1,21 +1,18 @@
+import {memo} from "react";
 import {GameSymbol} from "./../GameSymbol";
 import cl from "./Cell.module.scss";
-export function Cell({symbol, onClick, winnerSequence, index}) {
-   const isWinner = (winnerSequence, index) =>
-      winnerSequence?.find((element) => element[0] === index[0] && element[1] === index[1]);
-
+export const Cell = memo(function Cell({symbol, onClick, isWinner, i, j}) {
+   // const isWinner = (winnerSequence, index) =>
+   //    winnerSequence?.find((element) => element[0] === index[0] && element[1] === index[1]);
+   console.log("cell renders");
    return (
       <button
          className={cl.cell}
-         style={
-            isWinner(winnerSequence, [index[0], index[1]])
-               ? {background: "rgba(232, 42, 42, 0.1)"}
-               : {}
-         }
-         disabled={!!winnerSequence}
-         onClick={onClick}
+         style={isWinner ? {background: "rgba(232, 42, 42, 0.1)"} : {}}
+         disabled={!!isWinner}
+         onClick={() => onClick(i, j)}
       >
          <GameSymbol style={{width: 20, height: 20}}>{symbol}</GameSymbol>
       </button>
    );
-}
+});

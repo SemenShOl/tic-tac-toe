@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import cl from "./PlayerInfo.module.scss";
 import {GameSymbol} from "../GameSymbol";
 import cn from "classnames";
 import {Player} from "../Player/Player";
-export function PlayerInfo({profile, isRight, seconds, isTimerRunning = true}) {
+import {useNow} from "./../../../lib/timers";
+export function PlayerInfo({profile, isRight, timer, timerStartAt}) {
+   const now = useNow(1000, timerStartAt);
+   const mils = Math.max(now ? timer - (now - timerStartAt) : timer, 0);
+   const seconds = Math.ceil(mils / 1000);
    const minutesStr = String(Math.floor(seconds / 60)).padStart(2, "0");
    const secondsStr = String(Math.floor(seconds % 60)).padStart(2, "0");
    const isDanger = seconds <= 10;
-
    const getTimerColor = () => {
-      if (!isTimerRunning) {
+      if (!timerStartAt) {
          if (!seconds) return cl.timeIsOver;
          return cl.stopped;
       }
