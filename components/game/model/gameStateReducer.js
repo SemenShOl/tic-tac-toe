@@ -36,8 +36,6 @@ export const gameStateReducer = (
 	state,
 	action,
 ) => {
-	// debugger;
-	console.log(state.timers);
 	switch (action.type) {
 		case GAME_STATE_ACTIONS.CELL_CLICK: {
 			const { index, now } =
@@ -95,6 +93,7 @@ export const gameStateReducer = (
 				),
 			};
 		}
+
 		case GAME_STATE_ACTIONS.TIME_CHANGE: {
 			// debugger;
 			return {

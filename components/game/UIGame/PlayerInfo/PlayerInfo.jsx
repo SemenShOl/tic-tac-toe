@@ -16,35 +16,43 @@ export function PlayerInfo({
 	onTimeChange,
 	isModal,
 }) {
-	const [seconds, setSeconds] =
-		useState(timer);
+	// const [seconds, setSeconds] =
+	// 	useState(timer);
+	// useEffect(() => {
+	// 	if (!isActive) return;
+	// 	let currentSeconds = seconds;
+	// 	const interID = setInterval(
+	// 		() => {
+	// 			currentSeconds = Math.max(
+	// 				currentSeconds - 0.1,
+	// 				0,
+	// 			);
+	// 			setSeconds(currentSeconds);
+	// 			if (!currentSeconds)
+	// 				onChangeActive();
+	// 		},
+	// 		100,
+	// 	);
+
+	// 	return () => {
+	// 		onTimeChange(
+	// 			currentSeconds,
+	// 			profile.symbol,
+	// 		);
+	// 		clearInterval(interID);
+	// 	};
+	// }, [isActive]);
+	debugger;
+	const seconds = useTimerChange(
+		timer,
+		isActive,
+		onChangeActive,
+		onTimeChange,
+		profile,
+	);
 	const viewSeconds = !isModal
 		? seconds
 		: timer;
-	useEffect(() => {
-		if (!isActive) return;
-		let currentSeconds = seconds;
-		const interID = setInterval(
-			() => {
-				currentSeconds = Math.max(
-					currentSeconds - 0.1,
-					0,
-				);
-				setSeconds(currentSeconds);
-				if (!currentSeconds)
-					onChangeActive();
-			},
-			100,
-		);
-
-		return () => {
-			onTimeChange(
-				currentSeconds,
-				profile.symbol,
-			);
-			clearInterval(interID);
-		};
-	}, [isActive]);
 
 	const minutesStr = String(
 		Math.floor(viewSeconds / 60),
@@ -111,30 +119,38 @@ export function PlayerInfo({
 	);
 }
 
-// function useTimerChange(
-// 	initialTimer,
-// 	isActive,
-// 	onTimerChange,
-// ) {
-// 	const [seconds, setSeconds] =
-// 		useState(initialTimer);
-// 	useEffect(() => {
-// 		if (!isActive) return;
-// 		const interID = setInterval(
-// 			() => {
-// 				setSeconds(timer =>
-// 					Math.max(timer - 1, 0),
-// 				);
-// 			},
-// 			1000,
-// 		);
-// 		debugger;
-// 		onTimerChange(seconds);
-// 		console.log(
-// 			"active or seconds changes",
-// 		);
-// 		return () =>
-// 			clearInterval(interID);
-// 	}, [isActive, seconds]);
-// 	return seconds;
-// }
+function useTimerChange(
+	initialTimer,
+	isActive,
+	onChangeActive,
+	onTimeChange,
+	profile,
+) {
+	const [seconds, setSeconds] =
+		useState(initialTimer);
+	useEffect(() => {
+		if (!isActive) return;
+		let currentSeconds = seconds;
+		const interID = setInterval(
+			() => {
+				currentSeconds = Math.max(
+					currentSeconds - 0.1,
+					0,
+				);
+				setSeconds(currentSeconds);
+				if (!currentSeconds)
+					onChangeActive();
+			},
+			100,
+		);
+
+		return () => {
+			onTimeChange(
+				currentSeconds,
+				profile.symbol,
+			);
+			clearInterval(interID);
+		};
+	}, [isActive]);
+	return seconds;
+}
