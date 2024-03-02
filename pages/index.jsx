@@ -1,19 +1,14 @@
-import Header from '../components/header/header'
-import { Game, useGameState } from '../components/game'
-import HomePageLayout from './HomePageLayout/HomePageLayout'
-
+import Header from "../components/header/header"
+import {Game, useGameState} from "../components/game"
+import cl from "../styles/HomePage.module.scss"
+import Link from "next/link"
 export default function HomePage() {
-   // const moveOrder = players.map(player => player.symbol)
-   // const [
-   //    cells,
-   //    currentMove,
-   //    nextMove,
-   //    handleCellClick,
-   //    winnerSequence,
-   //    handlePlayerTimeOver,
-   //    winnerSymbol,
-   // ] = useGameState(moveOrder)
-   // const isModalOpen = winnerSymbol
-   // const setOnModalClose = () => {}
-   return <HomePageLayout header={<Header />}>{<Game />}</HomePageLayout>
+    return (
+        <div className={cl.wrapper}>
+            <Header />
+            <div className={cl.main}>
+                <Game />
+            </div>
+        </div>
+    )
 }

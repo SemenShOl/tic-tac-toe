@@ -1,7 +1,10 @@
 @import '../../../../styles/colors.module.scss';
 
 .winnerInfo {
-    margin-bottom: 9px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .winnerName {
         color: $teal600;

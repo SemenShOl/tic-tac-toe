@@ -2,9 +2,9 @@ import {
 	useReducer,
 	React,
 	useCallback,
+	useEffect,
 	useState,
-} from "react";
-
+} from "react"
 import {
 	PlayerInfo,
 	BackLink,
@@ -14,114 +14,184 @@ import {
 	MoveInfo,
 	Cell,
 	GameModal,
-} from "../UIGame";
-import { PLAYERS } from "../constants";
+} from "../UIGame"
+import { PLAYERS } from "../constants"
 import {
 	GAME_STATE_ACTIONS,
 	initGameState,
 	gameStateReducer,
-} from "../model/gameStateReducer";
-import { computeWinnerSymbol } from "./../model/computeWinnerSymbol";
-import { getNextMove } from "../model/getNextMove";
-import { computePlayerTimer } from "../model/computePlayerTimer";
+} from "../model/gameStateReducer"
+import { computeWinnerSymbol } from "./../model/computeWinnerSymbol"
+import { getNextMove } from "../model/getNextMove"
+import { computePlayerTimer } from "../model/computePlayerTimer"
+import { computeModalInfo } from "../model/computeModalInfojs"
 
 export function Game() {
-	const moveOrder = PLAYERS.map(
-		player => player.symbol,
-	);
+	const moveOrder =
+		PLAYERS.map(
+			(player) =>
+				player.symbol
+		)
+	// const [
+	// 	isStateUpdated,
+	// 	setIsStateUpdated,
+	// ] = useState(false)
+	const [
+		gameState,
+		dispatch,
+	] = useReducer(
+		gameStateReducer,
+		{
+			moveOrder,
+			defaultTimer: 3,
+		},
+		initGameState
+	)
 
-	const [gameState, dispatch] =
-		useReducer(
-			gameStateReducer,
-			{
-				moveOrder,
-				defaultTimer: 5,
-				currentMoveStart: Date.now(),
-			},
-			initGameState,
-		);
 	const winnerSymbol =
-		computeWinnerSymbol(gameState);
+		computeWinnerSymbol(
+			gameState
+		)
 
-	const nextMove = getNextMove(
-		gameState.currentMove,
-		moveOrder,
-		gameState.playerWhoCannotMove,
-	);
-	const winnerLogin = PLAYERS.find(
-		player =>
-			player.symbol === winnerSymbol,
-	)?.login;
+	const nextMove =
+		getNextMove(
+			gameState.currentMove,
+			moveOrder,
+			gameState.playerWhoCannotMove
+		)
+	const winnerLogin =
+		PLAYERS.find(
+			(player) =>
+				player.symbol ===
+				winnerSymbol
+		)?.login
 
-	const handleCellClick =
-		useCallback((i, j) => {
-			dispatch({
-				type:
-					GAME_STATE_ACTIONS.CELL_CLICK,
-				payload: {
-					index: [i, j],
-					now: Date.now(),
-				},
-			});
-		}, []);
-
-	const handleChangeMove = () => {
-		dispatch({
-			type:
-				GAME_STATE_ACTIONS.PLAYER_ACTIVE_CHANGE,
-		});
-	};
-
-	const handleTimeChange = (
-		time,
-		playerMove,
-	) => {
-		dispatch({
-			type:
-				GAME_STATE_ACTIONS.TIME_CHANGE,
-			payload: {
-				time,
-				playerMove,
-			},
-		});
-	};
+	const modalInfo =
+		!!winnerSymbol
 
 	const [
-		isModalOpen,
-		setIsModalOpen,
-	] = useState(!!winnerLogin);
+		initialGameState,
+		setInitialGameState,
+	] = useState(gameState)
+
+	const handleCellClick =
+		useCallback(
+			(i, j) => {
+				dispatch({
+					type:
+						GAME_STATE_ACTIONS.CELL_CLICK,
+					payload: {
+						index: [i, j],
+					},
+				})
+			},
+			[]
+		)
+
+	const handleTimeIsOver =
+		() => {
+			dispatch({
+				type:
+					GAME_STATE_ACTIONS.TIME_IS_OVER,
+			})
+		}
+
+	const handleTimeChange =
+		(
+			time,
+			playerMove
+		) => {
+			dispatch({
+				type:
+					GAME_STATE_ACTIONS.TIME_CHANGE,
+				payload: {
+					time,
+					playerMove,
+				},
+			})
+		}
+
+	const handleGameRestart =
+		() => {
+			// 	setIsStateUpdated(
+			// 		(v) => !v
+			// 	)
+			dispatch({
+				type:
+					GAME_STATE_ACTIONS.GET_INITIAL_GAME_STATE,
+				payload: {
+					initialGameState,
+				},
+			})
+		}
+	//Не имеет смысла без регистрации
+	// const modalInfo = winnerSymbol
+	// 	? computeModalInfo(
+	// 			moveOrder,
+	// 			winnerSymbol,
+	// 			30,
+	// 			20,
+	// 	  )
+	// 	: undefined;
+
+	// debugger
 	return (
 		<>
-			<GameModal
-				isOpen={!!winnerLogin}
-				winnerLogin={winnerLogin}
-				onClose={() =>
-					setIsModalOpen(false)
-				}
-				playersList={PLAYERS.map(
-					(player, index) => {
-						const { timer, isActive } =
-							computePlayerTimer(
-								player,
-								gameState,
-							);
+			{winnerLogin ? (
+				<GameModal
+					isOpen={
+						!!winnerLogin
+					}
+					winnerLogin={
+						winnerLogin
+					}
+					onGameRestart={
+						handleGameRestart
+					}
+					playersList={PLAYERS.map(
+						(
+							player,
+							index
+						) => {
+							const { timer } =
+								computePlayerTimer(
+									player,
+									gameState
+								)
 
-						return (
-							<PlayerInfo
-								key={player.id}
-								profile={player}
-								isRight={index % 2}
-								timer={timer}
-								isActive={false}
-								isModal={true}
-							/>
-						);
-					},
-				)}
-			/>
+							return (
+								<PlayerInfo
+									key={player.id}
+									profile={
+										player
+									}
+									isRight={
+										index % 2
+									}
+									timer={timer}
+									isActive={
+										false
+									}
+									modalInfo={
+										modalInfo
+									}
+									isStateUpdated={
+										gameState.isStateJustNowUpdated
+									}
+								/>
+							)
+						}
+					)}
+				/>
+			) : null}
+
 			<GameLayout
-				backLink={<BackLink />}
-				gameTitle={<GameTitle />}
+				backLink={
+					<BackLink />
+				}
+				gameTitle={
+					<GameTitle />
+				}
 				gameInfo={
 					<GameInfo
 						playersCount={2}
@@ -129,57 +199,75 @@ export function Game() {
 					/>
 				}
 				playersList={PLAYERS.map(
-					(player, index) => {
-						const { timer, isActive } =
+					(
+						player,
+						index
+					) => {
+						const {
+							timer,
+							isActive,
+						} =
 							computePlayerTimer(
 								player,
-								gameState,
-							);
+								gameState
+							)
 						return (
 							<PlayerInfo
 								key={player.id}
 								profile={player}
 								timer={timer}
-								isRight={index % 2}
+								isRight={
+									index % 2
+								}
 								isActive={
 									winnerSymbol
 										? false
 										: isActive
 								}
-								onChangeActive={
-									handleChangeMove
+								onTimeIsOver={
+									handleTimeIsOver
 								}
 								onTimeChange={
 									handleTimeChange
 								}
+								isStateUpdated={
+									gameState.isStateJustNowUpdated
+								}
 							/>
-						);
-					},
+						)
+					}
 				)}
 				moveInfo={
 					<MoveInfo
 						currentSymbol={
 							gameState.currentMove
 						}
-						nextSymbol={nextMove}
+						nextSymbol={
+							nextMove
+						}
 					/>
 				}
 				gameCells={gameState.cells.map(
 					(line, i) =>
-						line.map((symbol, j) => (
-							<Cell
-								i={i}
-								j={j}
-								isWinner={
-									winnerSymbol === symbol
-								}
-								key={i + j}
-								symbol={symbol}
-								onClick={handleCellClick}
-							/>
-						)),
+						line.map(
+							(symbol, j) => (
+								<Cell
+									i={i}
+									j={j}
+									isWinner={
+										winnerSymbol ===
+										symbol
+									}
+									key={i + j}
+									symbol={symbol}
+									onClick={
+										handleCellClick
+									}
+								/>
+							)
+						)
 				)}
 			/>
 		</>
-	);
+	)
 }

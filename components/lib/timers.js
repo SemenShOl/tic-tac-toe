@@ -1,56 +1,33 @@
-import {
-	useEffect,
-	useState,
-} from "react";
+import {useEffect, useState} from 'react';
 
-export function useNow(
-	interval,
-	enabled,
+export function useTimerChange(
+    initialTimer,
+    isActive,
+    onTimeIsOver,
+    onTimeChange,
+    profile,
+    isStateUpdated
 ) {
-	const [now, setNow] = useState();
+    const [seconds, setSeconds] = useState(initialTimer);
 
-	useEffect(() => {
-		if (!enabled) {
-			setNow(undefined);
-			return;
-		}
+    useEffect(() => {
+        if (!isActive) return;
+        debugger;
+        let currentSeconds = isStateUpdated
+            ? initialTimer
+            : seconds;
+        const interID = setInterval(() => {
+            currentSeconds = Math.max(currentSeconds - 0.1, 0);
+            setSeconds(currentSeconds);
+            if (!currentSeconds) {
+                onTimeIsOver();
+            }
+        }, 100);
 
-		const interID = setInterval(
-			() => {
-				setNow(Date.now());
-			},
-			interval,
-		);
-
-		return () => {
-			clearInterval(interID);
-		};
-	}, [interval, enabled]);
-
-	return now;
-}
-
-export function useInterval(
-	interval,
-	enabled,
-	callback,
-) {
-	useEffect(() => {
-		if (!enabled) {
-			return;
-		}
-
-		const interID = setInterval(
-			() => {
-				callback(Date.now());
-			},
-			interval,
-		);
-
-		return () => {
-			clearInterval(interID);
-		};
-		//TODO useCallback
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [interval, enabled]);
+        return () => {
+            onTimeChange(currentSeconds, profile.symbol);
+            clearInterval(interID);
+        };
+    }, [isActive]);
+    return seconds;
 }

@@ -32,19 +32,19 @@ export const PLAYERS = [
 		avatar: avatar1,
 		symbol: GAME_SYMBOLS.ZERO,
 	},
-	{
-		id: 2,
-		login:
-			"Sarasfgsgsfgsjfg;sfgjsfgjs;",
-		rating: 200,
-		avatar: avatar2,
-		symbol: GAME_SYMBOLS.TRIANGLE,
-	},
-	{
-		id: 2,
-		login: "Anna",
-		rating: 100,
-		avatar: avatar3,
-		symbol: GAME_SYMBOLS.SQUARE,
-	},
+	// {
+	// 	id: 2,
+	// 	login:
+	// 		"Sarasfgsgsfgsjfg;sfgjsfgjs;",
+	// 	rating: 200,
+	// 	avatar: avatar2,
+	// 	symbol: GAME_SYMBOLS.TRIANGLE,
+	// },
+	// {
+	// 	id: 2,
+	// 	login: "Anna",
+	// 	rating: 100,
+	// 	avatar: avatar3,
+	// 	symbol: GAME_SYMBOLS.SQUARE,
+	// },
 ];

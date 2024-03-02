@@ -24,3 +24,16 @@
     color: $slate400;
     font-size: 14px;
 }
+
+.loseColor {
+    span {
+        color: rgb(184, 34, 34)
+    }
+}
+
+.winColor {
+    span {
+        color: rgb(5, 146, 5);
+
+    }
+}
