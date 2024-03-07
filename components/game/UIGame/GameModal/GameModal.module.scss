@@ -1,0 +1,21 @@
+@import '../../../../styles/colors.module.scss';
+
+.winnerInfo {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .winnerName {
+        color: $teal600;
+    }
+}
+
+.players {
+    width: 154*4px;
+    background: white;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}

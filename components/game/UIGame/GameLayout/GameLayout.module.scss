@@ -1,0 +1,55 @@
+@import '../../../../styles/colors.module.scss';
+
+.header {
+    padding: 8px;
+    width: 154*4px + 48px;
+    margin-bottom: 17px;
+}
+
+.playerInfo {
+    width: 154*4px;
+    padding: 16px 32px;
+    background: white;
+    border-radius: 16px;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 24px;
+    box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -2px rgba(0, 0, 0, 0.10);
+}
+
+.field {
+    width: 616px;
+    padding: 20px 32px 28px;
+    height: 651px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0px 4px 6px -1;
+
+    .matchInfo {
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin-bottom: 12px;
+
+        .btns {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 0;
+            gap: 11px
+        }
+    }
+
+    .gridWrapper {
+        width: 616px;
+        height: 570px;
+        display: grid;
+        grid-template-rows: repeat(19, 1fr);
+        grid-template-columns: repeat(19, 1fr);
+        padding: 1px 0 0 1px;
+    }
+}

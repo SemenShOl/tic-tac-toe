@@ -1,6 +1,7 @@
-import React from 'react'
-import cl from './UIButton.module.scss'
-import cn from 'classnames'
+import React from "react"
+import cl from "./UIButton.module.scss"
+import cn from "classnames"
+import Link from "next/link"
 /**
  * @param {{
  * children: any,
@@ -9,12 +10,43 @@ import cn from 'classnames'
  * lg?:boolean
  * }}  props
  */
-export default function UIButton({ className, lg, outlined, children }) {
-   const isOutlined = outlined ? 'outlined' : ''
-   const isLg = lg ? 'lg' : ''
-   return (
-      <button className={cn(cl.btn, cl[isOutlined], cl[isLg], className)}>
-         {children}
-      </button>
-   )
+export function UIButton({
+    className,
+    lg,
+    outlined,
+    children,
+    path,
+    onClick,
+}) {
+    const isOutlined = outlined ? "outlined" : ""
+    const isLg = lg ? "lg" : ""
+    return (
+        <div>
+            {path ? (
+                <Link
+                    href={path}
+                    className={cn(
+                        cl.btn,
+                        cl[isOutlined],
+                        cl[isLg],
+                        className
+                    )}
+                >
+                    {children}
+                </Link>
+            ) : (
+                <button
+                    className={cn(
+                        cl.btn,
+                        cl[isOutlined],
+                        cl[isLg],
+                        className
+                    )}
+                    onClick={onClick}
+                >
+                    {children}
+                </button>
+            )}
+        </div>
+    )
 }

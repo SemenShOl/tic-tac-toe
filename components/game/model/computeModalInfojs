@@ -1,0 +1,23 @@
+export function computeModalInfo(
+	moveOrder,
+	winnerSymbol,
+	losePoints,
+	winPoints,
+) {
+	const modalInfo = {};
+	moveOrder.map(
+		symbol =>
+			(modalInfo[symbol] =
+				winnerSymbol != symbol
+					? {
+							points: `(-${losePoints})`,
+							color: "loseColor",
+					  }
+					: {
+							points: `(+${winPoints})`,
+							color: "winColor",
+					  }),
+	);
+
+	return modalInfo;
+}

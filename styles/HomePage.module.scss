@@ -1,0 +1,19 @@
+@import './colors.module.scss';
+
+.wrapper {
+    background: $slate200;
+    min-height: 100vh;
+    min-width: 100%;
+
+    .main {
+        padding-top: 24px;
+        margin: 0 auto;
+        max-width: 616px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+}

@@ -1,5 +1,1 @@
-export { GameInfo } from './GameInfo/GameInfo'
-export { useGameState } from './useGameState'
-export { GameSymbol } from './GameSymbol'
-export { GameTitle } from './GameTitle/GameTitle'
-export { GameField } from './GameField/GameField'
+export { Game } from './Game/Game'

@@ -1,0 +1,39 @@
+@import "../../../../styles/colors.module.scss";
+
+.wrapper {
+    background-color: white;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: $teal600;
+}
+
+.login {
+    // background: white;
+    width: 140px;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rating {
+    background: white;
+    color: $slate400;
+    font-size: 14px;
+}
+
+.loseColor {
+    span {
+        color: rgb(184, 34, 34)
+    }
+}
+
+.winColor {
+    span {
+        color: rgb(5, 146, 5);
+
+    }
+}
